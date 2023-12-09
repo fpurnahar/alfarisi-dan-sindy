@@ -648,7 +648,7 @@
 
 			</div>
 		</footer>
-		<embed src="audio/bruno_mars_marry_you.mp3" loop="true" autostart="true" width="2" height="0">
+		<audio id="waveform" src="audio/bruno_mars_marry_you.mp3" autoplay></audio>
 	</div>
 
 	<div class="gototop js-top">
@@ -747,6 +747,8 @@
 			console.error('Action:', e.action);
 			console.error('Trigger:', e.trigger);
 		});
+
+		const wavesurfer = WaveSurfer.create({ container: '#waveform', waveColor: 'violet', progressColor: 'purple', }); wavesurfer.load('audio/bruno_mars_marry_you.mp3');
 	</script>
 </body>
 
