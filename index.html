@@ -657,6 +657,10 @@
 		<!-- 
 		<iframe src="audio/bruno_mars_marry_you.mp5" allow="autoplay" style="display:block" id="iframeAudio">
 		</iframe> -->
+
+		<button class="toggle-audio">play</button>
+
+
 	</div>
 
 	<!-- jQuery -->
@@ -686,7 +690,22 @@
 	<script src="js/main.js"></script>
 
 	<script>
+		$(document).ready(function () {
+			$('.toggle-audio').trigger('click');
 
+			$(".toggle-audio").on('click', function (event) {
+				audioPlaying = !audioPlaying;
+				$("#background-audio").remove();
+
+				clearInterval(backgroundAudio);
+				if (audioPlaying) {
+					$(".audio1")[0].play();
+				}
+				else {
+					$(".audio1")[0].pause();
+				}
+			});
+		});
 		// default example
 		simplyCountdown('.simply-countdown-one', {
 			year: 2023,
@@ -764,18 +783,7 @@
 			}, 120000); // 120000 is the duration of your audio which in this case 2 mins.
 		};
 
-		$(".toggle-audio").on('click', function (event) {
-			audioPlaying = !audioPlaying;
-			$("#background-audio").remove();
 
-			clearInterval(backgroundAudio);
-			if (audioPlaying) {
-				$(".audio1")[0].play();
-			}
-			else {
-				$(".audio1")[0].pause();
-			}
-		});
 	</script>
 </body>
 
