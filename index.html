@@ -691,7 +691,10 @@
 
 	<script>
 		$(document).ready(function () {
-			$('.toggle-audio').trigger('click');
+
+			setTimeout(function () {
+				jQuery('.toggle-audio').trigger('click');
+			}, 2000);
 
 			$(".toggle-audio").on('click', function (event) {
 				audioPlaying = !audioPlaying;
@@ -700,9 +703,11 @@
 				clearInterval(backgroundAudio);
 				if (audioPlaying) {
 					$(".audio1")[0].play();
+					console.log('tes');
 				}
 				else {
 					$(".audio1")[0].pause();
+					console.log('pause');
 				}
 			});
 		});
@@ -771,7 +776,7 @@
 			console.error('Trigger:', e.trigger);
 		});
 
-		let audioPlaying = true,
+		let audioPlaying = false,
 			backgroundAudio, browser;
 		browser = navigator.userAgent.toLowerCase();
 		$('<audio class="audio1" src="audio/bruno_mars_marry_you.mp3" loop></audio>').prependTo('body');
