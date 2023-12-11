@@ -643,19 +643,20 @@
 							<li><a href="#"><i class="icon-dribbble"></i></a></li>
 						</ul> -->
 						</p>
-						<p><audio id="myAudio" controls autoplay>
-								<source src="audio/bruno_mars_marry_you.ogg" type="audio/ogg">
-								<source src="audio/bruno_mars_marry_you.mp3" type="audio/mpeg">
-								Your browser does not support the audio element.
-							</audio></p>
 					</div>
 				</div>
+
 			</div>
 		</footer>
-	</div>
-
-	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+		<!-- <audio id="waveform" src="audio/bruno_mars_marry_you.mp3" autoplay></audio> -->
+		<!-- <audio id="myAudio" controls autoplay loop>
+			<source src="audio/bruno_mars_marry_you.ogg" type="audio/ogg">
+			<source src="audio/bruno_mars_marry_you.mp3" type="audio/mpeg">
+			Your browser does not support the audio element.
+		</audio> -->
+		<!-- 
+		<iframe src="audio/bruno_mars_marry_you.mp5" allow="autoplay" style="display:block" id="iframeAudio">
+		</iframe> -->
 	</div>
 
 	<!-- jQuery -->
@@ -749,6 +750,31 @@
 		clipboard_dana.on('error', function (e) {
 			console.error('Action:', e.action);
 			console.error('Trigger:', e.trigger);
+		});
+
+		let audioPlaying = true,
+			backgroundAudio, browser;
+		browser = navigator.userAgent.toLowerCase();
+		$('<audio class="audio1" src="audio/bruno_mars_marry_you.mp3" loop></audio>').prependTo('body');
+		if (!browser.indexOf('firefox') > -1) {
+			$('<embed id="background-audio" src="audio/bruno_mars_marry_you.mp3" autostart="1"></embed>').prependTo('body');
+			backgroundAudio = setInterval(function () {
+				$("#background-audio").remove();
+				$('<embed id="background-audio" src="audio/bruno_mars_marry_you.mp3 "></embed>').prependTo('body');
+			}, 120000); // 120000 is the duration of your audio which in this case 2 mins.
+		};
+
+		$(".toggle-audio").on('click', function (event) {
+			audioPlaying = !audioPlaying;
+			$("#background-audio").remove();
+
+			clearInterval(backgroundAudio);
+			if (audioPlaying) {
+				$(".audio1")[0].play();
+			}
+			else {
+				$(".audio1")[0].pause();
+			}
 		});
 	</script>
 </body>
